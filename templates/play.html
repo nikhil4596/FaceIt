@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../static/bootstrap.css" rel="stylesheet">
+    <title>FaceIt - Capture Image</title>
+    <style type="text/css">
+        /*#my_camera {display : inline-block; margin: 20px }*/
+        #results { float:right; margin:20px; padding:20px; border:1px solid; }
+    </style>
+<body style='background-color:white;"'>
+<script src="../static/jquery-3.1.1.js"></script>
+<script src="../static/jquery-3.1.1.min.js"></script>
+<script src="../static/bootstrap.js"></script>
+<script src="http://e-cdn-files.deezer.com/js/min/dz.js"></script>
+<script type="text/javascript" src="../static/webcam.js"></script>
+<script src="../static/imageProcessing.js"></script>
+<script src="../static/FileSaver.js"></script>
+
+<div id="total">
+<div class="text-center d-flex cover"
+     style="background-size:cover; background-position: left top;">
+<div class="container col-md-12">
+    <h2 style="color:black">IMITATION TIME: Try to Copy the emotions of the face you selected</h2>
+</div>
+<!--<h3>Demonstrates simple 320x240 capture &amp; display</h3></div>-->
+<div class="container col-md-7"><img src="../static/{{ img_name }}" height="420" width ="500"></div>
+<div class="container col-md-5" id="main">
+    <div id="my_camera"></div>
+    <!-- Configure a few settings and attach camera -->
+    <script language="JavaScript">
+        Webcam.set({
+            width: 500,
+            height: 420,
+            dest_width: 640,
+            dest_height: 480,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach( '#my_camera' );
+    </script>
+    <script src="../static/takepicture.js"></script>
+</div>
+<div class="container col-md-12">
+    <h6></h6>
+    <br>
+</div>
+    <div class="container col-md-12">
+        <form method="POST" enctype="multipart/form-data" id="myForm">
+            <input type=button class="btn btn-lg btn-danger mx-1" value="Take a Snapshot" onClick="take_snapshot()">
+        </form>
+    </div>
+    <p id="helperp" value="{{ img_name }}"></p>
+
+
+<script>
+
+    var imageBlob;
+    function take_snapshot() {
+        Webcam.snap( function(data_uri) {
+            imageBlob = dataURItoBlob(data_uri);
+        } );
+        var file = new File([imageBlob], "image.jpg", {type: "image/jpeg"});
+        console.log(file);
+        var form = document.getElementById('myForm');
+        var img_name = "{{ img_name }}";
+        var formData = new FormData(form);
+        formData.append("file", file);
+        formData.append("img_name", img_name);
+        console.log(img_name);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "/compute/");
+        var total = document.getElementById("total");
+        total.innerHTML = "<div class='container col-md-4'></div><img src='../static/loader2.gif'></img>";
+        xmlhttp.onreadystatechange = function() {
+
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            window.location = "/end?score=" + this.responseText;
+        }
+        };
+
+        xmlhttp.send(formData);
+        console.log(formData.get('file'));
+    }
+
+    function createDialog(title, text) {
+    return $("<div class='dialog' title='" + title + "'><p>" + text + "</p></div>")
+    .dialog({
+        resizable: false,
+        height:140,
+        modal: true,
+        buttons: {
+            "Confirm": function() {
+                $( this ).dialog( "close" );
+            },
+            Cancel: function() {
+                $( this ).dialog( "close" );
+            }
+        }
+    });
+}
+</script>
+
+</div>
+</body>
+</html>

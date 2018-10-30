@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          type="text/css">
+    <link rel="stylesheet" href="../static/theme.css" type="text/css">
+    <link rel="stylesheet" href="../static/animate.css" type="text/css">
+    <title>FaceIt</title>
+
+</head>
+
+<body>
+<div class="text-center d-flex cover"
+     style="background-image: url('../static/bg1.jpg'); background-position: top left;">
+    <div class="container py-5 ml-auto">
+        <div class="row">
+            <div class="col-md-12 animated slideInDown" style="-webkit-animation-duration:1.5s;">
+                <h1 class="display-3 mb-6 text-danger">
+                    <b>Ready for the Imitation Games?</b>
+                </h1>
+                <p class="lead mb-5 text-lg-center">
+                    <b class="text-danger">Take a Face. Make a Face. Don't break your face.</b>
+                    <b class="text-danger"> Hit PLAY </b>
+                </p>
+                <a id="test" class="btn btn-lg btn-danger mx-1 animated slideInRight" style="-webkit-animation-duration:1.5s;">PLAY!</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    document.getElementById("test").addEventListener("click", function () {
+
+        var xhr = new XMLHttpRequest();
+        var path = "/select/";
+        window.location.href = path;
+        return xhr.responseText;
+    });
+</script>
+</body>
+
+</html>

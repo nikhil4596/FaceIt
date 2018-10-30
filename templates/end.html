@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          type="text/css">
+    <link rel="stylesheet" href="../static/theme.css" type="text/css">
+    <link rel="stylesheet" href="../static/animate.css" type="text/css">
+    <title>FaceIt</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Play Again!</a>
+</nav>
+<div class="text-center d-flex cover"
+     style="background-image: url('../static/bg3.jpg'); background-size:cover; background-position: left top;">
+    <div class="container py-5 ml-auto">
+        <div class="row fadeInDown" style="-webkit-animation-duration: 1.5s">
+            <div class="col-md-12">
+                <h3 class="display-4 mb-4 text-white">
+                    <b>Score: {{ score }}</b>
+                </h3>
+                <p class="lead mb-5 fadeInDown" style="background-color: #0f988d; color: #0b0b0b">
+                    Emotion Similarity Score: {{ escore}}
+                    Facial Features Score: {{fscore}}
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
